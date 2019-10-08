@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>Build Information Parser</Description>
+  </PropertyGroup>
+
+  <Import Project="$(MSBuildProjectDirectory)/../../Build/Common.proj" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Resources\icon.png" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+</Project>

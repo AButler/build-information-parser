@@ -1,0 +1,42 @@
+<Project>
+  <!--
+    This is a shared msbuild file that is intended to be imported by all projects in this solution.
+
+    An example usage in a project would be:
+
+    // Must be before import in order to derive assembly description from description
+    <PropertyGroup>
+      <Description>Specific assembly/package description</Description>
+    </PropertyGroup>
+    
+    <Import Project="$(MSBuildProjectDirectory)/../../Build/Common.proj" />
+
+    <PropertyGroup>
+     // Any overrides required, such as target framework
+    </PropertyGroup>
+
+  -->
+  <PropertyGroup>
+    <!-- NuGet Package Properties -->
+    <PackageProjectUrl>https://github.com/AButler/build-information-parser</PackageProjectUrl>
+    <PackageTags>build;version;parse;semantic;git</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIcon>icon.png</PackageIcon>
+    <Company>WebButler</Company>
+    <Copyright>Copyright 2019 WebButler</Copyright>
+    <Authors>WebButler</Authors>
+    <RepositoryUrl>https://github.com/AButler/build-information-parser.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+
+    <!-- Assembly Properties -->
+    <NeutralLanguage>en-US</NeutralLanguage>
+  </PropertyGroup>
+
+  <Target Name="BeforeBuild">
+    <Error Text="The Description property must be set before importing Common.proj" Condition="$(Description) == ''"/>
+  </Target>
+
+  <PropertyGroup>
+    <DebugType Condition=" '$(Configuration)' == 'Release' ">None</DebugType>
+  </PropertyGroup>
+</Project>
