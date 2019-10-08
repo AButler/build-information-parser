@@ -13,7 +13,7 @@ namespace BuildInformationParser {
       sb.AppendLine( $"File          : {buildInfo.FileVersion}" );
       sb.AppendLine( $"Commit        : {buildInfo.Commit}" );
 
-      return sb.ToString();
+      return sb.ToString().Trim();
     }
   }
 }
