@@ -1,0 +1,16 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    
+    - name: Build using Cake
+      run: .\build.ps1 -Target CommitBuild
+      shell: pwsh
