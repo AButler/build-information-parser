@@ -67,5 +67,10 @@ Task( "Pack" )
     DotNetCorePack( solution, settings );
   } );
 
+Task( "OutputVersion" )
+  .Does<BuildInformation>( buildInfo => {
+    Information( $"::set-output name=SEMANTIC_VERSION::{buildInfo.SemanticVersion}" );
+  } );
+
 // Must go after all tasks
 RunTarget( target );

@@ -1,0 +1,22 @@
+name: Unpublish
+
+on: 
+  release:
+    types: [unpublished,deleted]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+        
+      - name: Get Version
+        id: version
+        run: .\build.ps1 -Target OutputVersion --TagName="$GITHUB_REF" --Commit="$GITHUB_SHA"
+        shell: pwsh
+      
+      - name: Unpublish
+        run: dotnet nuget delete BuildInformationParser {{ steps.version.outputs.SEMANTIC_VERSION }} -k {{ secrets.NUGET_APIKEY }} --non-interactive
+        shell: cmd
