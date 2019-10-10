@@ -66,5 +66,15 @@ namespace BuildInformationParser.UnitTests {
     public void Suffix_must_be_alphanumeric() {
       Assert.That( () => { new SemVer1( 0, 0, 0, "-alpha!" ); }, Throws.InstanceOf<ArgumentException>() );
     }
+
+    [Test]
+    public void Suffix_must_not_be_empty() {
+      Assert.That( () => { new SemVer1( 0, 0, 0, "-" ); }, Throws.InstanceOf<ArgumentException>() );
+    }
+
+    [Test]
+    public void Suffix_must_not_be_whitespace() {
+      Assert.That( () => { new SemVer1( 0, 0, 0, " " ); }, Throws.InstanceOf<ArgumentException>() );
+    }
   }
 }

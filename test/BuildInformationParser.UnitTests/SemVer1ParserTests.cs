@@ -8,6 +8,9 @@ namespace BuildInformationParser.UnitTests {
       get {
         yield return new TestCaseData( "1.2.3", new SemVer1( 1, 2, 3 ) ).SetName( "Simple" );
         yield return new TestCaseData( "v1.2.3", new SemVer1( 1, 2, 3 ) ).SetName( "Simple (with prefix)" );
+
+        yield return new TestCaseData( "01.02.03", new SemVer1( 1, 2, 3 ) ).SetName( "Preceding zeros" );
+        yield return new TestCaseData( "v01.02.03", new SemVer1( 1, 2, 3 ) ).SetName( "Preceding zeros (with prefix)" );
         
         yield return new TestCaseData( "1.2.3-alpha001", new SemVer1( 1, 2, 3, "-alpha001" ) ).SetName( "Simple (with suffix)" );
         yield return new TestCaseData( "v1.2.3-alpha001", new SemVer1( 1, 2, 3, "-alpha001" ) ).SetName( "Simple (with prefix and suffix)" );
@@ -36,6 +39,12 @@ namespace BuildInformationParser.UnitTests {
 
         yield return new TestCaseData( "1.2.3.4" ).SetName( "Four fields" );
         yield return new TestCaseData( "v1.2.3.4" ).SetName( "Four fields (with prefix)" );
+
+        yield return new TestCaseData( "-1.2.3" ).SetName( "Negative" );
+        yield return new TestCaseData( "v-1.2.3" ).SetName( "Negative (with prefix)" );
+
+        yield return new TestCaseData( "1.2.3-" ).SetName( "No suffix" );
+        yield return new TestCaseData( "v1.2.3-" ).SetName( "No suffix (with prefix)" );
 
         yield return new TestCaseData( null ).SetName( "Null" );
         yield return new TestCaseData( "" ).SetName( "Empty String" );

@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace BuildInformationParser {
-  public class SemVer1 : ISemVer {
+  public class SemVer1 : ISemVer, IComparable<SemVer1> {
     private static readonly Regex SuffixRegEx = new Regex( "^-[A-Za-z0-9-]+$" );
 
     public int Major { get; }
@@ -59,7 +60,7 @@ namespace BuildInformationParser {
         return true;
       }
 
-      return Major == other.Major && Minor == other.Minor && Patch == other.Patch && Suffix == other.Suffix;
+      return Major == other.Major && Minor == other.Minor && Patch == other.Patch && string.Equals( Suffix, other.Suffix, StringComparison.OrdinalIgnoreCase );
     }
 
     public override bool Equals( object obj ) {
@@ -86,6 +87,61 @@ namespace BuildInformationParser {
         hashCode = ( hashCode * 397 ) ^ ( Suffix != null ? Suffix.GetHashCode() : 0 );
         return hashCode;
       }
+    }
+
+    public int CompareTo( SemVer1 other ) {
+      if ( ReferenceEquals( this, other ) ) {
+        return 0;
+      }
+
+      if ( ReferenceEquals( null, other ) ) {
+        return 1;
+      }
+
+      var majorComparison = Major.CompareTo( other.Major );
+      if ( majorComparison != 0 ) {
+        return majorComparison;
+      }
+
+      var minorComparison = Minor.CompareTo( other.Minor );
+      if ( minorComparison != 0 ) {
+        return minorComparison;
+      }
+
+      var patchComparison = Patch.CompareTo( other.Patch );
+      if ( patchComparison != 0 ) {
+        return patchComparison;
+      }
+
+      if( Suffix == null && other.Suffix == null ) {
+        return 0;
+      }
+
+      if( Suffix == null ) {
+        return 1;
+      }
+
+      if( other.Suffix == null ) {
+        return -1;
+      }
+
+      return string.Compare( Suffix, other.Suffix, StringComparison.OrdinalIgnoreCase );
+    }
+
+    public static bool operator <( SemVer1 left, SemVer1 right ) {
+      return Comparer<SemVer1>.Default.Compare( left, right ) < 0;
+    }
+
+    public static bool operator >( SemVer1 left, SemVer1 right ) {
+      return Comparer<SemVer1>.Default.Compare( left, right ) > 0;
+    }
+
+    public static bool operator <=( SemVer1 left, SemVer1 right ) {
+      return Comparer<SemVer1>.Default.Compare( left, right ) <= 0;
+    }
+
+    public static bool operator >=( SemVer1 left, SemVer1 right ) {
+      return Comparer<SemVer1>.Default.Compare( left, right ) >= 0;
     }
   }
 }
