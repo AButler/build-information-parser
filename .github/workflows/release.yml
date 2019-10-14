@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v1
         
       - name: Pack
-        run: .\build.ps1 -Target Pack --TagName="$GITHUB_REF" --Commit="$GITHUB_SHA"
+        run: .\build.ps1 -Target Pack --TagName="${env:GITHUB_REF}" --Commit="${env:GITHUB_SHA}"
         shell: pwsh
       
       - name: Publish
