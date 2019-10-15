@@ -1,4 +1,4 @@
-#addin nuget:?package=BuildInformationParser&version=1.0.0-alpha001&prerelease
+#addin nuget:?package=BuildInformationParser&version=1.0.0-alpha002&prerelease
 using BuildInformationParser;
 
 var target = Argument( "target", "Build" );
