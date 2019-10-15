@@ -7,7 +7,7 @@ var solution = "../BuildInformationParser.sln";
 Setup<BuildInformation>( ctx => {
   var buildInfo = BuildInformation.Create(
     Argument( "Configuration", "Release" ),
-    Argument( "TagName", "0.0.0-localbuild" ), 
+    Argument( "TagName", "refs/tags/0.0.0-localbuild" ), 
     Argument( "Commit", (string)null )
   );
 
