@@ -17,7 +17,7 @@ jobs:
         shell: pwsh
       
       - name: Publish
-        run: dotnet nuget push packages-build/*.nupkg -k {{ secrets.NUGET_APIKEY }}
+        run: dotnet nuget push packages-build/*.nupkg -k {{ secrets.NUGET_APIKEY }} -s https://api.nuget.org/v3/index.json
         shell: cmd
       
       - name: Upload artifacts
