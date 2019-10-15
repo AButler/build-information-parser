@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace BuildInformationParser.UnitTests {
   [TestFixture]
@@ -28,6 +25,10 @@ namespace BuildInformationParser.UnitTests {
     [TestCase( "refs/head/" )]
     [TestCase( "refs/tags/" )]
     [TestCase( "refs/tags/ " )]
+    [TestCase( "master" )]
+    [TestCase( "v1.0.0" )]
+    [TestCase( "v1.0.0-alpha002" )]
+    [TestCase( "refs/tags/v1.0.0 " )]
     public void Invalid( string input ) {
       var tagNameParser = new TagNameParser();
 

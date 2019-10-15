@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace BuildInformationParser {
   public class TagNameParser {
-    private static readonly Regex TagNameRegex = new Regex( @"^refs/tags/(?<TagName>.+)$" );
+    private static readonly Regex TagNameRegex = new Regex( @"^refs/tags/(?<TagName>\S+)$" );
 
     public string Parse( string rawTagName ) {
       if ( rawTagName == null ) {
