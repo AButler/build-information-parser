@@ -27,15 +27,15 @@ namespace BuildInformationParser {
       Data = new Dictionary<string, string>();
     }
 
-    public static BuildInformation Create( string configuration, string tagName, string commit, int buildNumber = 0 ) {
-      return Create( configuration, tagName, commit, buildNumber, BuildInformationSettings.Default );
+    public static BuildInformation Create( string configuration, string rawTagName, string commit, int buildNumber = 0 ) {
+      return Create( configuration, rawTagName, commit, buildNumber, BuildInformationSettings.Default );
     }
 
-    public static BuildInformation Create( string configuration, string tagName, string commit, BuildInformationSettings settings ) {
-      return Create( configuration, tagName, commit, 0, settings );
+    public static BuildInformation Create( string configuration, string rawTagName, string commit, BuildInformationSettings settings ) {
+      return Create( configuration, rawTagName, commit, 0, settings );
     }
 
-    public static BuildInformation Create( string configuration, string tagName, string commit, int buildNumber, BuildInformationSettings settings ) {
+    public static BuildInformation Create( string configuration, string rawTagName, string commit, int buildNumber, BuildInformationSettings settings ) {
       if ( settings == null ) {
         throw new ArgumentNullException( nameof(settings) );
       }
@@ -43,6 +43,9 @@ namespace BuildInformationParser {
       if ( buildNumber < 0 ) {
         throw new ArgumentOutOfRangeException( nameof(buildNumber), buildNumber, "Build number must be greater than or equal to zero" );
       }
+
+      var tagNameParser = new TagNameParser();
+      var tagName = tagNameParser.Parse( rawTagName );
 
       var parser = new SemVer1Parser();
 
