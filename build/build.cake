@@ -57,6 +57,8 @@ Task( "Pack" )
       Configuration = buildInfo.Configuration,
       OutputDirectory = outputDirectory,
       NoBuild = true,
+      IncludeSource = true,
+      IncludeSymbols = true,
       ArgumentCustomization = args => args
         .Append( $" /p:Version=\"{buildInfo.SemanticVersion}\"" )
         .Append( $" /p:Copyright=\"Copyright {DateTime.Now.Year} WebButler\"" )
