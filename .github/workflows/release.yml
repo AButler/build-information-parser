@@ -17,7 +17,7 @@ jobs:
         shell: pwsh
       
       - name: Publish
-        run: dotnet nuget push *.nupkg -k ${{ secrets.NUGET_APIKEY }} -s https://api.nuget.org/v3/index.json -n
+        run: dotnet nuget push *.nupkg -k ${{ secrets.NUGET_APIKEY }} -s https://api.nuget.org/v3/index.json -n true
         working-directory: ./packages-build
         shell: cmd
       
