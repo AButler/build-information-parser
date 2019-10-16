@@ -28,8 +28,7 @@ jobs:
           path: packages-build
       
       - name: Upload artifacts to release
-        uses: skx/github-action-publish-binaries@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: AButler/upload-release-assets@v1.0
         with:
-          args: 'packages-build/*.nupkg'
+          files: 'packages-build/*.nupkg'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
