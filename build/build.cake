@@ -60,10 +60,10 @@ Task( "Pack" )
       IncludeSource = true,
       IncludeSymbols = true,
       ArgumentCustomization = args => args
-        .Append( $" /p:Version=\"{buildInfo.SemanticVersion}\"" )
-        .Append( $" /p:Copyright=\"Copyright {DateTime.Now.Year} WebButler\"" )
-        .Append( $" /p:RepositoryBranch=\"{buildInfo.TagName}\"" )
-        .Append( $" /p:RepositoryCommit=\"{buildInfo.Commit}\"" )
+        .Append( $"/p:Version=\"{buildInfo.SemanticVersion}\"" )
+        .Append( $"/p:Copyright=\"Copyright {DateTime.Now.Year} WebButler\"" )
+        .Append( $"/p:RepositoryBranch=\"{buildInfo.TagName}\"" )
+        .Append( $"/p:RepositoryCommit=\"{buildInfo.Commit}\"" )
     };
 
     DotNetCorePack( solution, settings );
