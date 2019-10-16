@@ -27,7 +27,6 @@
     <Authors>WebButler</Authors>
     <RepositoryUrl>https://github.com/AButler/build-information-parser.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
 
     <!-- Assembly Properties -->
     <NeutralLanguage>en-US</NeutralLanguage>
